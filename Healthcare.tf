@@ -6,13 +6,12 @@ provider "aws" {
 
 # Create AWS Instance
 
-resource "aws_instance" "instance1" {
-  
-  ami           = "ami-0497a974f8d5dcef8"
-  instance_type = "t2.medium"
-  key_name      = "Sinkey"
-
-  user_data  = <<-EOF
+resource "aws_instance" "Prod-Server" {
+ ami = "ami-060e277c0d4cce553"
+ instance_type = "t2.micro"
+ availability_zone = "ap-southeast-1"
+ key_name = "Sinkey"
+ user_data  = <<-EOF
  #!/bin/bash
      sudo apt-get update -y
  EOF
