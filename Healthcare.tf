@@ -12,7 +12,11 @@ resource "aws_instance" "instance1" {
   instance_type = "t2.medium"
   key_name      = "Sinkey"
 
-  tags = {
-    Name = "Test"
-  }
+  user_data  = <<-EOF
+ #!/bin/bash
+     sudo apt-get update -y
+ EOF
+ tags = {
+ Name = "Prod-Server"
+ }
 }
