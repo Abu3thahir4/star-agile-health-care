@@ -111,7 +111,7 @@ resource "aws_security_group" "proj-sg" {
 # Creating a new network interface
 resource "aws_network_interface" "proj-ni" {
  subnet_id = aws_subnet.proj-subnet.id
- private_ips = ["10.0.1.10"]
+ private_ips = ["10.0.1.125"]
  security_groups = [aws_security_group.proj-sg.id]
 }
 
@@ -119,12 +119,12 @@ resource "aws_network_interface" "proj-ni" {
 resource "aws_eip" "proj-eip" {
  vpc = true
  network_interface = aws_network_interface.proj-ni.id
- associate_with_private_ip = "10.0.1.10"
+ associate_with_public_ip = "10.0.1.125"
 }
 
 
 # Creating an ubuntu EC2 instance
-resource "aws_instance" "Prod-Server" {
+resource "aws_instance" "test-server" {
  ami = "ami-0497a974f8d5dcef8"
  instance_type = "t2.micro"
  key_name = "Sinkey"
@@ -137,6 +137,6 @@ resource "aws_instance" "Prod-Server" {
      sudo apt-get update -y
  EOF
  tags = {
- Name = "Prod-Server"
+ Name = "test-server"
  }
 }
