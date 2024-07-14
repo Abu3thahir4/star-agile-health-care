@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: my-container
-        image: abu2thahir3/healthcare
+        image: abu2thahir3/healthcare:latest
         ports:
         - containerPort: 8080
 ---
