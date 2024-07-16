@@ -10,7 +10,7 @@ terraform {
 
 # Configure the AWS provider
 provider "aws" {
-  region = "ap-southeast-1"
+  region = "us-west-1"
 }
 # Creating a VPC
 resource "aws_vpc" "proj-vpc" {
@@ -111,7 +111,7 @@ resource "aws_security_group" "proj-sg" {
 # Creating a new network interface
 resource "aws_network_interface" "proj-ni" {
  subnet_id = aws_subnet.proj-subnet.id
- private_ips = ["10.0.1.125"]
+ private_ips = ["10.0.1.5"]
  security_groups = [aws_security_group.proj-sg.id]
 }
 
@@ -119,15 +119,15 @@ resource "aws_network_interface" "proj-ni" {
 resource "aws_eip" "proj-eip" {
  vpc = true
  network_interface = aws_network_interface.proj-ni.id
- associate_with_private_ip = "10.0.1.125"
+ associate_with_private_ip = "10.0.1.5"
 }
 
 
 # Creating an ubuntu EC2 instance
 resource "aws_instance" "test-server" {
- ami = "ami-0497a974f8d5dcef8"
+ ami = "ami-0ecaad63ed3668fca"
  instance_type = "t2.micro"
- key_name = "Sinkey"
+ key_name = "NCkey"
  network_interface {
  device_index = 0
  network_interface_id = aws_network_interface.proj-ni.id
