@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,7 +19,7 @@ spec:
       - name: my-container
         image: abu2thahir3/healthcare:latest
         ports:
-        - containerPort: 8082
+        - containerPort: 8085  # This should match the targetPort in the Service
 ---
 apiVersion: v1
 kind: Service
@@ -29,9 +30,9 @@ metadata:
 spec:
   selector:
     app: healthcare
-
   type: NodePort
   ports:
   - nodePort: 31055
     port: 8082
-    targetPort: 8085
+    targetPort: 8085  # This should match the containerPort in the Deployment
+
