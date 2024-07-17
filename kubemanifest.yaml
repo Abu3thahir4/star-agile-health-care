@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: healthcare-np-service
+  name: medicure-service
   labels:
     app: healthcare
 spec:
@@ -32,7 +32,7 @@ spec:
     app: healthcare
   type: NodePort
   ports:
-  - nodePort: 31055
-    port: 8082
+  - nodePort: 31010
+    port: 8080
     targetPort: 8085  # This should match the containerPort in the Deployment
 
